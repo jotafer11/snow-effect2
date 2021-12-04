@@ -1,0 +1,154 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow: hidden;
+}
+.snowFall {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 11;
+  display: flex;
+  justify-content: center;
+  transform: scale(2) rotate(12deg);
+}
+.snowFall div {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+  margin: 3vh;
+  height: 8vh;
+  width: 8vh;
+  top: -30vh;
+  border-radius: 50%;
+  background-color: white;
+  --scaleVar: 0.5;
+  --delayVar: 0;
+  animation: fallAnim 6000ms linear infinite;
+}
+.delayMe div {
+  animation-delay: 1400ms;
+}
+.snowFall div:nth-of-type(2n) {
+  animation-delay: -1200ms;
+  animation-duration: 4200ms;
+  --scaleVar: 0.3;
+}
+.snowFall div:nth-of-type(3n) {
+  animation-delay: -600ms;
+  animation-duration: 8800ms;
+  --scaleVar: 0.4;
+}
+.biggerSnow {
+  transform: scale(4);
+  filter: blur(0.2vh);
+}
+.delayMe div:nth-of-type(2n) {
+  animation-delay: 3000ms;
+}
+.delayMe div:nth-of-type(3n) {
+  animation-delay: 900ms;
+}
+.snowFall div::after,
+.snowFall div::before {
+  content: "";
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  top: -250%;
+  border-radius: 50%;
+  background-color: white;
+}
+.snowFall div::before {
+  top: -150%;
+  left: -150%;
+}
+.snowFall div:nth-of-type(2n)::after {
+  top: -250%;
+}
+.snowFall div:nth-of-type(2n)::before {
+  left: -350%;
+}
+.snowFall div:nth-of-type(3n)::after {
+  top: -350%;
+}
+.snowFall div:nth-of-type(3n)::before {
+  top: 350%;
+}
+.snowMan {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+.innerSnow {
+  width: 55%;
+  height: 85%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 100px #000;  
+  position: absolute;
+  background-image: url("../img/bg2.jpg")
+}
+
+
+.noBlur {
+  filter: none;
+}
+.noBlur .innerSnow {
+  background: none;
+}
+.innerSnow::before,
+.innerSnow::after {
+  content: "";
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  bottom: -5%;
+  left: -5%;
+  filter: blur(1vh) contrast(10000%) brightness(150000%);
+}
+.innerSnow::before {
+  left: 50%;
+  height: 30%;
+  bottom: 10%;
+}
+.noBlur .innerSnow::before {
+  left: 80%;
+  bottom: 16%;
+  filter: blur(0.1vh);
+}
+.noBlur .innerSnow::after {
+  display: none;
+}
+.noBlur .snowBall {
+  background-color: #f4f4f4;
+  box-shadow: -8vh 0 6vh rgba(0, 0, 0, 0.5) inset, 2vh 0 2vh rgba(0, 0, 0, 1);
+  filter: blur(2vh);
+  border: 0;
+  transform: scale(1) translate(3vh, -2vh);
+  animation-name: none;
+  opacity: 0.3;
+}
+.noBlur .snowBall::after {
+  display: none;
+}
+
+@keyframes fallAnim {
+  0% {
+    transform: translateY(0) scale(var(--scaleVar));
+  }
+  100% {
+    transform: translateY(100vh) scale(var(--scaleVar));
+  }
+}
+}
